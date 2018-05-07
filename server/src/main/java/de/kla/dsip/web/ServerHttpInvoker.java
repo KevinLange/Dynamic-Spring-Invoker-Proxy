@@ -14,7 +14,7 @@ import de.kla.dsip.service.impl.GammaServiceImpl;
 @Configuration
 public class ServerHttpInvoker {
 
-	@Bean(name = "/alpha")
+	@Bean(name = "/AlphaService")
 	HttpInvokerServiceExporter alphaInvoker() {
 		HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
 		exporter.setService(new AlphaServiceImpl());
@@ -22,7 +22,7 @@ public class ServerHttpInvoker {
 		return exporter;
 	}
 
-	@Bean(name = "/beta")
+	@Bean(name = "/BetaService")
 	HttpInvokerServiceExporter betaInvoker() {
 		HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
 		exporter.setService(new BetaServiceImpl());
@@ -30,7 +30,7 @@ public class ServerHttpInvoker {
 		return exporter;
 	}
 	
-	@Bean(name = "/gamma")
+	@Bean(name = "/GammaService")
 	HttpInvokerServiceExporter gammaInvoker() {
 		HttpInvokerServiceExporter exporter = new HttpInvokerServiceExporter();
 		exporter.setService(new GammaServiceImpl());

@@ -8,15 +8,15 @@ import de.kla.dsip.service.AlphaService;
 import de.kla.dsip.service.BetaService;
 import de.kla.dsip.service.GammaService;
 
-@Configuration
+//@Configuration
 public class ClientHttpInvoker {
 
-	private static final String URL = "http://localhost:8090/";
+	private static final String URL = "http://localhost:8080/";
 
 	@Bean
 	public HttpInvokerProxyFactoryBean alphaInvoker() {
 		HttpInvokerProxyFactoryBean invoker = new HttpInvokerProxyFactoryBean();
-		invoker.setServiceUrl(URL + "alpha");
+		invoker.setServiceUrl(URL + AlphaService.class.getSimpleName());
 		invoker.setServiceInterface(AlphaService.class);
 		return invoker;
 	}
@@ -24,7 +24,7 @@ public class ClientHttpInvoker {
 	@Bean
 	public HttpInvokerProxyFactoryBean betaInvoker() {
 		HttpInvokerProxyFactoryBean invoker = new HttpInvokerProxyFactoryBean();
-		invoker.setServiceUrl(URL + "beta");
+		invoker.setServiceUrl(URL + BetaService.class.getSimpleName());
 		invoker.setServiceInterface(BetaService.class);
 		return invoker;
 	}
@@ -32,7 +32,7 @@ public class ClientHttpInvoker {
 	@Bean
 	public HttpInvokerProxyFactoryBean gammaInvoker() {
 		HttpInvokerProxyFactoryBean invoker = new HttpInvokerProxyFactoryBean();
-		invoker.setServiceUrl(URL + "gamma");
+		invoker.setServiceUrl(URL + GammaService.class.getSimpleName());
 		invoker.setServiceInterface(GammaService.class);
 		return invoker;
 	}

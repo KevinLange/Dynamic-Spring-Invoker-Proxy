@@ -9,6 +9,6 @@ public class BetaServiceImpl implements BetaService {
 
 	@Override
 	public void call() {
-		System.out.println("GammaServiceImpl called");
+		System.out.println("BetaServiceImpl called");
 	}
 }
