@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import de.kla.dsip.service.AlphaService;
 
 @Component
-public class AlphaServiceImpl implements AlphaService{
+public class AlphaServiceImpl implements AlphaService {
 
 	@Override
 	public void call() {

@@ -11,7 +11,7 @@ import de.kla.dsip.service.impl.AlphaServiceImpl;
 import de.kla.dsip.service.impl.BetaServiceImpl;
 import de.kla.dsip.service.impl.GammaServiceImpl;
 
-@Configuration
+//@Configuration
 public class ServerHttpInvoker {
 
 	@Bean(name = "/AlphaService")

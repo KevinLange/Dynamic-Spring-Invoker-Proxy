@@ -37,12 +37,12 @@ public class ServerHttpInvokerGenerator {
 			gbd.setBeanClass(HttpInvokerServiceExporter.class);
 
 			MutablePropertyValues mpv = new MutablePropertyValues();
-			mpv.add("service", serviceDefinition.getService());
+			mpv.add("service", applicationContext.getBean(serviceDefinition.getServiceInterface()));
 			mpv.add("serviceInterface", serviceDefinition.getServiceInterface());
 
 			gbd.setPropertyValues(mpv);
 
-			registry.registerBeanDefinition(beanName, gbd);
+			registry.registerBeanDefinition("/" + beanName, gbd);
 		}
 	}
 }
