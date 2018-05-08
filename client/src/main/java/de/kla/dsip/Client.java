@@ -6,19 +6,16 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
 import de.kla.dsip.web.config.ClientHttpInvokerGenerator;
-import de.kla.dsip.web.config.ClientHttpInvokerGenerator;
 
 @ComponentScan
 @EnableAutoConfiguration
 public class Client {
 
-	// @Autowired
-	// @Qualifier("dsipService")
-	// private DynamicClientHttpInvokerFactory dsipService;
-
-	// @Autowired
-	// private ClientHttpInvokerGenerator generator;
+	/**
+	 * Is not directly used but the postConstruct created the dynamic HttpInvoker
+	 */
 	@Autowired
+	@SuppressWarnings("unused")
 	private ClientHttpInvokerGenerator generatorBeanDef;
 
 	public static void main(String[] args) {
