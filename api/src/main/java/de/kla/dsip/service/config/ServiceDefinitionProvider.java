@@ -7,14 +7,12 @@ import java.util.List;
 import java.util.Set;
 
 import org.reflections.Reflections;
-import org.springframework.stereotype.Component;
 
 import de.kla.dsip.service.AlphaService;
 import de.kla.dsip.service.BetaService;
 import de.kla.dsip.service.GammaService;
 import de.kla.dsip.service.base.DsipService;
 
-@Component
 public class ServiceDefinitionProvider {
 
 	public List<ServiceDefinition> dsipServicesManuel() {
@@ -33,7 +31,7 @@ public class ServiceDefinitionProvider {
 	 * @see https://github.com/ronmamo/reflections
 	 * @return
 	 */
-	public Collection<ServiceDefinition> dsipServicesAutomatic() {
+	public static Collection<ServiceDefinition> dsipServices() {
 		Set<ServiceDefinition> services = new HashSet<>();
 
 		Reflections reflections = new Reflections("de.kla.dsip");

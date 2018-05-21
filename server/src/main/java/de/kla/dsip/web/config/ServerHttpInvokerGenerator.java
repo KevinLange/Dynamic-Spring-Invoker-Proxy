@@ -17,20 +17,17 @@ import de.kla.dsip.service.config.ServiceDefinitionProvider;
 public class ServerHttpInvokerGenerator {
 
 	private final ApplicationContext applicationContext;
-	private final ServiceDefinitionProvider serviceDefinitionProvider;
 
 	@Autowired
-	public ServerHttpInvokerGenerator(ApplicationContext applicationContext,
-			ServiceDefinitionProvider serviceDefinitionProvider) {
+	public ServerHttpInvokerGenerator(ApplicationContext applicationContext) {
 		this.applicationContext = applicationContext;
-		this.serviceDefinitionProvider = serviceDefinitionProvider;
 	}
 
 	@PostConstruct
 	public void init() {
 		BeanDefinitionRegistry registry = (BeanDefinitionRegistry) applicationContext.getAutowireCapableBeanFactory();
 
-		for (ServiceDefinition serviceDefinition : serviceDefinitionProvider.dsipServicesAutomatic()) {
+		for (ServiceDefinition serviceDefinition : ServiceDefinitionProvider.dsipServices()) {
 			GenericBeanDefinition gbd = new GenericBeanDefinition();
 			gbd.setBeanClass(HttpInvokerServiceExporter.class);
 
