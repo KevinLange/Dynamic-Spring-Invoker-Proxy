@@ -1,16 +1,18 @@
 package de.kla.dsip.service.config;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import org.reflections.Reflections;
 import org.springframework.stereotype.Component;
 
 import de.kla.dsip.service.AlphaService;
 import de.kla.dsip.service.BetaService;
 import de.kla.dsip.service.GammaService;
-import de.kla.dsip.service.impl.AlphaServiceImpl;
-import de.kla.dsip.service.impl.BetaServiceImpl;
-import de.kla.dsip.service.impl.GammaServiceImpl;
+import de.kla.dsip.service.base.DsipService;
 
 @Component
 public class ServiceDefinitionProvider {
@@ -18,19 +20,34 @@ public class ServiceDefinitionProvider {
 	public List<ServiceDefinition> dsipServicesManuel() {
 		List<ServiceDefinition> services = new ArrayList<>();
 
-		services.add(new ServiceDefinition(AlphaServiceImpl.class, AlphaService.class));
-		services.add(new ServiceDefinition(BetaServiceImpl.class, BetaService.class));
-		services.add(new ServiceDefinition(GammaServiceImpl.class, GammaService.class));
+		services.add(new ServiceDefinition(AlphaService.class));
+		services.add(new ServiceDefinition(BetaService.class));
+		services.add(new ServiceDefinition(GammaService.class));
 
 		return services;
 	}
 
-	public List<ServiceDefinition> dsipServicesAutomatic() {
-		List<ServiceDefinition> services = new ArrayList<>();
+	/**
+	 * Finds all services that have to be added to the spring context.<br>
+	 * 
+	 * @see https://github.com/ronmamo/reflections
+	 * @return
+	 */
+	public Collection<ServiceDefinition> dsipServicesAutomatic() {
+		Set<ServiceDefinition> services = new HashSet<>();
 
-		// TODO add automatically
-		// https://github.com/google/guava
-		// https://github.com/ronmamo/reflections
+		Reflections reflections = new Reflections("de.kla.dsip");
+		Set<Class<? extends DsipService>> subTypes = reflections.getSubTypesOf(DsipService.class);
+
+		for (Class<? extends DsipService> subType : subTypes) {
+			if (!subType.isInterface()) {
+				// we only need the interfaces
+				continue;
+			}
+
+			// TODO what about multiple interface extensions?
+			services.add(new ServiceDefinition(subType));
+		}
 
 		return services;
 	}

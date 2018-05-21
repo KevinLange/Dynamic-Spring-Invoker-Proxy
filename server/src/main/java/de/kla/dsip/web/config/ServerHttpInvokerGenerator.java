@@ -30,9 +30,7 @@ public class ServerHttpInvokerGenerator {
 	public void init() {
 		BeanDefinitionRegistry registry = (BeanDefinitionRegistry) applicationContext.getAutowireCapableBeanFactory();
 
-		for (ServiceDefinition serviceDefinition : serviceDefinitionProvider.dsipServicesManuel()) {
-			String beanName = serviceDefinition.getServiceInterface().getSimpleName();
-
+		for (ServiceDefinition serviceDefinition : serviceDefinitionProvider.dsipServicesAutomatic()) {
 			GenericBeanDefinition gbd = new GenericBeanDefinition();
 			gbd.setBeanClass(HttpInvokerServiceExporter.class);
 
@@ -42,7 +40,7 @@ public class ServerHttpInvokerGenerator {
 
 			gbd.setPropertyValues(mpv);
 
-			registry.registerBeanDefinition("/" + beanName, gbd);
+			registry.registerBeanDefinition("/" + serviceDefinition.getBeanName(), gbd);
 		}
 	}
 }
