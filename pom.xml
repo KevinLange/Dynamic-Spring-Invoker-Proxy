@@ -6,7 +6,7 @@
 
 	<groupId>de.kla.dsip</groupId>
 	<artifactId>parent</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 
 	<name>dsip-parent</name>
 	<url>http://maven.apache.org</url>
@@ -32,7 +32,7 @@
 			<dependency>
 				<groupId>de.kla.dsip</groupId>
 				<artifactId>api</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
+				<version>1.0.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
